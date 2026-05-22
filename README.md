@@ -2,7 +2,8 @@
 
 A data-driven front-end application built to visualise community-level poverty across Jamaica's 14 parishes, developed as a final project for a front-end React development course.
 
----
+## Live Link
+
 
 ## Overview
 
@@ -70,7 +71,15 @@ A summary panel that surfaces high-level statistics for the currently selected p
 User authentication via Firebase Auth, with protected routes ensuring data views are accessible only to signed-in users.
 
 
----
+## Architecture
+
+### Data Flow Diagram
+<img width="596" height="550" alt="poverty_in_jm_system_architecture_v2" src="https://github.com/user-attachments/assets/2115e8fa-9ea1-460e-a7f4-cd1664f9bb0a" />
+
+### Client Server Architecture
+<img width="559" height="550" alt="poverty_in_jm_data_flow" src="https://github.com/user-attachments/assets/78be44eb-d5be-4866-8c38-2005b6f82f42" />
+
+
 
 ## Technical Stack
 
