@@ -69,8 +69,6 @@ A summary panel that surfaces high-level statistics for the currently selected p
 ### Authentication
 User authentication via Firebase Auth, with protected routes ensuring data views are accessible only to signed-in users.
 
-### Responsive status bar
-A real-time status bar displaying a synced clock (via World Time API) and live battery level (via the Web Battery API).
 
 ---
 
