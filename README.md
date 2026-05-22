@@ -70,6 +70,7 @@ A summary panel that surfaces high-level statistics for the currently selected p
 ### Authentication
 User authentication via Firebase Auth, with protected routes ensuring data views are accessible only to signed-in users.
 
+---
 
 ## Architecture
 
@@ -79,7 +80,7 @@ User authentication via Firebase Auth, with protected routes ensuring data views
 ### Client Server Architecture
 <img width="559" height="550" alt="poverty_in_jm_data_flow" src="https://github.com/user-attachments/assets/78be44eb-d5be-4866-8c38-2005b6f82f42" />
 
-
+---
 
 ## Technical Stack
 
