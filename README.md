@@ -3,7 +3,7 @@
 A data-driven front-end application built to visualise community-level poverty across Jamaica's 14 parishes, developed as a final project for a front-end React development course.
 
 ## Live Link
-
+https://povertyinjm.netlify.app/
 
 ## Overview
 
