@@ -1,51 +1,186 @@
-# React + Vite
+# Jamaica Poverty Index
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A data-driven front-end application built to visualise community-level poverty across Jamaica's 14 parishes, developed as a final project for a front-end React development course.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Overview
 
-## React Compiler
+The Jamaica Poverty Index is an interactive dashboard that transforms raw socioeconomic data from the Planning Institute of Jamaica (PIOJ) into an accessible, filterable, and visually rich web experience. The project sits at the intersection of data analytics, cultural identity, and modern front-end development — combining a passion for Jamaica with a commitment to making public data legible and meaningful.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+The dataset covers **829 communities** across all 14 parishes of Jamaica, capturing household-level consumption, poverty rates, and income inequality (GINI coefficients). What began as a data exploration exercise became a personal research tool — one that allows users to locate their own district, see the numbers behind their community, and feel genuinely connected to the data.
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## Motivation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project was driven by three converging interests:
+
+- **Data science and analytics** — the belief that raw data, properly visualised, tells stories that reports alone cannot.
+- **Cultural identity** — a desire to engage seriously with Jamaica's socioeconomic landscape using publicly available government data.
+- **Front-end craftsmanship** — the goal of building something technically rigorous while remaining accessible to a general audience.
+
+The intention is for this dashboard to serve as the foundation for a future academic research paper exploring the spatial distribution of poverty in Jamaica and the relationship between consumption, inequality, and geography.
+
+---
+
+## Dataset
+
+**Source:** Planning Institute of Jamaica (PIOJ) — Poverty Maps dataset
+
+| Field | Description |
+|---|---|
+| `COMMNAME` | Community name |
+| `ParishName` | One of Jamaica's 14 parishes |
+| `Population` | Total community population |
+| `Households` | Number of households |
+| `Poverty` | Poverty rate (% of population below poverty line) |
+| `GINI` | Gini coefficient (0–1 scale; higher = more unequal) |
+| `Consumptio` | Mean per-capita consumption (Jamaican dollars) |
+| `Min_Consum` | Minimum consumption recorded in the community |
+| `Max_Consum` | Maximum consumption recorded in the community |
+| `COMM_CODE` | Unique community identifier |
+| `GeoJSON` | Polygon geometry for map rendering |
+
+**Coverage:** 829 communities across 14 parishes — Kingston, St. Andrew, St. Thomas, Portland, St. Mary, St. Ann, Trelawny, St. James, Hanover, Westmoreland, St. Elizabeth, Manchester, Clarendon, and St. Catherine.
+
+---
+
+## Features
+
+### Parish and community filtering
+Users can filter the dataset by parish to isolate communities of interest — including their own. The dashboard updates dynamically across all panels when a filter is applied.
+
+### Data table
+A sortable, searchable table displaying all community records with key metrics: poverty rate, GINI coefficient, population, household count, and consumption figures.
+
+### Comparative analysis
+A dedicated comparison tab allows side-by-side analysis of parishes or communities, surfacing differences in poverty rates, inequality, and consumption at a glance.
+
+### Charts and visualisations
+Multiple chart types render the data visually — including poverty rate distributions, consumption ranges, and GINI comparisons across parishes and communities.
+
+### AI data assistant
+An integrated conversational assistant powered by OpenRouter (GPT-4o Mini) and grounded in the PIOJ dataset. Users can ask natural-language questions — such as "which parish has the highest poverty rate?" or "what does the GINI score mean for St. Thomas?" — and receive contextual, data-informed responses.
+
+### Preview panel
+A summary panel that surfaces high-level statistics for the currently selected parish or community — total population, average poverty rate, average consumption, and GINI range.
+
+### Authentication
+User authentication via Firebase Auth, with protected routes ensuring data views are accessible only to signed-in users.
+
+### Responsive status bar
+A real-time status bar displaying a synced clock (via World Time API) and live battery level (via the Web Battery API).
+
+---
+
+## Technical Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | React 18 (Vite) |
+| State management | `useReducer` + React Context |
+| Authentication | Firebase Authentication |
+| Database | Cloud Firestore |
+| AI assistant | OpenRouter API (GPT-4o Mini) |
+| Styling | Custom CSS (`index.css`) |
+| Charts | Recharts |
+| Testing | Jest + React Testing Library |
+| Deployment | Firebase Hosting |
+
+---
+
+## Project Structure
+
+```
+PovertyinJM/
+├── index.html
+├── vite.config.js
+├── package.json
+├── firebase.json
+├── firestore.rules
+├── .env                        # VITE_OPENROUTER_API_KEY (not committed)
+└── src/
+    ├── App.jsx                 # Root component, layout, routing
+    ├── main.jsx                # Entry point
+    ├── index.css               # Global styles
+    ├── firebase.js             # Firebase initialisation
+    ├── components/
+    │   ├── Navbar.jsx
+    │   ├── HeroSection.jsx
+    │   ├── DataTable.jsx
+    │   ├── CompareTab.jsx
+    │   ├── InsightsTab.jsx
+    │   ├── ChatWidget.jsx      # AI assistant (OpenRouter)
+    │   ├── PreviewPanel.jsx
+    │   └── AIchatbot.jsx
+    ├── contexts/
+    │   └── AuthContext.jsx
+    ├── utils/
+    │   └── firestoreHelpers.js
+    ├── App.css
+    └── pages/
+        └── SignInPage.jsx
+```
+
+---
+
+## Setup and Installation
+
+### Prerequisites
+- Node.js 18+
+- A Firebase project with Authentication and Firestore enabled
+- An OpenRouter API key
+
+### Steps
+
+```bash
+# Clone the repository
+git clone https://github.com/codequeen-debug/PovertyinJM.git
+cd PovertyinJM
+
+# Install dependencies
+npm install
+
+# Create your environment file
+echo "VITE_OPENROUTER_API_KEY=your_key_here" > .env
+
+# Start the development server
+npm run dev
+```
+
+Configure your Firebase credentials in `src/firebase.js` using your project's config object from the Firebase console.
+
+---
 
 ## Environment Variables
 
-This project uses Vite environment variables for Firebase and Hugging Face AI integration.
+| Variable | Description |
+|---|---|
+| `VITE_OPENROUTER_API_KEY` | API key for OpenRouter (AI assistant) |
 
-### Setup Instructions
+> The `.env` file is excluded from version control via `.gitignore`. Never commit API keys to a public repository.
 
-1. Copy `.env.example` to `.env` in the root directory:
-   ```bash
-   cp .env.example .env
-   ```
+---
 
-2. Add your API keys to `.env`:
-   - **Firebase**: Get credentials from [Firebase Console](https://console.firebase.google.com/)
-   - **Hugging Face**: Get token from [Hugging Face API Tokens](https://huggingface.co/settings/tokens)
+## Future Work
 
-3. Restart the Vite dev server after updating `.env`:
-   ```bash
-   npm run dev
-   ```
+This dashboard is intended as a living project. Planned extensions include:
 
-### Required Environment Variables
+- **Choropleth map** — rendering community GeoJSON polygons as a colour-coded poverty map of Jamaica
+- **Time-series analysis** — incorporating data from multiple survey years to track poverty trends over time
+- **Research paper** — a formal academic write-up exploring spatial poverty patterns, the relationship between GINI and consumption, and policy implications for high-poverty communities
+- **Export functionality** — allowing users to download filtered datasets as CSV for their own analysis
 
-- `VITE_FIREBASE_API_KEY`
-- `VITE_FIREBASE_AUTH_DOMAIN`
-- `VITE_FIREBASE_PROJECT_ID`
-- `VITE_FIREBASE_STORAGE_BUCKET`
-- `VITE_FIREBASE_MESSAGING_SENDER_ID`
-- `VITE_FIREBASE_APP_ID`
-- `VITE_HUGGING_FACE_API_KEY` (for AI chat feature)
-- `VITE_HUGGING_FACE_MODEL` (default: `gpt2`)
+---
 
-**Note:** The `.env` file is git-ignored and will not be committed to the repository.
+## Acknowledgements
+
+Data sourced from the **Planning Institute of Jamaica (PIOJ)** Poverty Maps dataset. This project was developed independently as a final project for a front-end React development course, and reflects a personal commitment to making Jamaican public data more accessible and visually engaging.
+
+---
+
+## Author
+
+**codequeen-debug**
+GitHub: [github.com/codequeen-debug](https://github.com/codequeen-debug)
